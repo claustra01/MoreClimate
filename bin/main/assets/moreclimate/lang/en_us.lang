@@ -1,0 +1,8 @@
+
+potion.effect.dcs.freeze_res_long=Potion of Cold Resistance
+splash_potion.effect.dcs.freeze_res_long=Splash Potion of Cold Resistance
+lingering_potion.effect.dcs.freeze_res_long=Lingering Potion of Cold Resistance
+tipped_arrow.effect.dcs.freeze_res_long=Arrow of Freeze Resistance
+
+tile.bloom_iron.name=Iron Ore Clay
+tile.bloom_gold.name=Gold Ore Clay

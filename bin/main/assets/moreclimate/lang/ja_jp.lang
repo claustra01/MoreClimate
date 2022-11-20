@@ -1,0 +1,8 @@
+
+potion.effect.dcs.freeze_res_long=冷気耐性のポーション
+splash_potion.effect.dcs.freeze_res_long=冷気耐性のスプラッシュポーション
+lingering_potion.effect.dcs.freeze_res_long=冷気耐性の残留ポーション
+tipped_arrow.effect.dcs.freeze_res_long=冷気耐性の矢
+
+tile.bloom_iron.name=鉄鉱石粘土
+tile.bloom_gold.name=金鉱石粘土
