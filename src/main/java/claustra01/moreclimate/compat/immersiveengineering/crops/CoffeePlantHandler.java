@@ -8,19 +8,23 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-public class RicePlantHandler extends WeightedPlantHandler {
+import java.util.Random;
+
+public class CoffeePlantHandler extends WeightedPlantHandler {
 
     public static float seedWeight = 0.25f;
     public static float cropWeight = 1f;
-    public static int numDrops = 1;
-    public static ItemStack itemSeeds = new ItemStack(FoodInit.seeds, 1, 0);
-    public static ItemStack itemDrops = new ItemStack(FoodInit.crops, numDrops, 0);
+    public static int minDrops = 1;
+    public static int maxDrops = 2;
+    public static int numDrops = new Random().nextInt(maxDrops - minDrops) + minDrops;
+    public static ItemStack itemSeeds = new ItemStack(FoodInit.seeds, 1, 4);
+    public static ItemStack itemDrops = new ItemStack(FoodInit.crops, numDrops, 4);
     public static ItemStack blockDirt = new ItemStack(Blocks.DIRT);
 
-    public RicePlantHandler() {
+    public CoffeePlantHandler() {
         this.seed = new ComparableItemStack(itemSeeds, false, false);
         this.soil = new ComparableItemStack(blockDirt, false, false);
-        this.crop = FoodInit.cropRice;
+        this.crop = FoodInit.cropCoffee;
     }
 
     @Override

@@ -6,6 +6,10 @@ import claustra01.moreclimate.compat.immersiveengineering.WeightedItemStack;
 import defeatedcrow.hac.api.blockstate.DCState;
 import defeatedcrow.hac.core.base.ClimateCropBase;
 import defeatedcrow.hac.core.base.ClimateDoubleCropBase;
+import defeatedcrow.hac.food.block.crop.BlockGrape;
+import defeatedcrow.hac.food.block.crop.BlockLotusN;
+import defeatedcrow.hac.food.block.crop.BlockSeaweed;
+import defeatedcrow.hac.food.block.crop.BlockWisteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -24,6 +28,8 @@ public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandl
     protected Block crop;
     protected ComparableItemStack soil;
     protected Random rand = new Random();
+
+    public boolean Soyflag = false;
 
     @Override
     public boolean isCorrectSoil(ItemStack seed, ItemStack soil) {
@@ -47,20 +53,31 @@ public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandl
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IBlockState[] getRenderedPlant(ItemStack seed, ItemStack soil, float growth, TileEntity tile)
-    {
+    public IBlockState[] getRenderedPlant(ItemStack seed, ItemStack soil, float growth, TileEntity tile) {
         List<IBlockState> states = new ArrayList<IBlockState>();
         states.add(crop.getDefaultState());
 
         IBlockState[] ret = new IBlockState[states.size()];
-        for(int i = 0; i < states.size(); i++)
-            if(states.get(i) !=null)
-                if(states.get(i).getBlock() instanceof ClimateCropBase) {
-                    ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE4, Math.min(3, Math.round(3*growth)));
+        for (int i = 0; i < states.size(); i++)
+            if (states.get(i) != null)
+
+                if (
+                        states.get(i).getBlock() instanceof ClimateCropBase ||
+                        states.get(i).getBlock() instanceof BlockSeaweed ||
+                        states.get(i).getBlock() instanceof BlockWisteria ||
+                        states.get(i).getBlock() instanceof BlockGrape
+                ) {
+                    ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE4, Math.min(3, Math.round(3 * growth)));
                 }
-                else if(states.get(i).getBlock() instanceof ClimateDoubleCropBase) {
-                    ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, Math.min(7, Math.round(7*growth)));
+
+                else if (states.get(i).getBlock() instanceof ClimateDoubleCropBase) {
+                    ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, Math.min(7, Math.round(7 * growth)));
                 }
+
+                else if (states.get(i).getBlock() instanceof BlockLotusN) {
+                    // ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, Math.min(7, Math.round(3 * growth) + 4));
+                }
+
         return ret;
 
     }
