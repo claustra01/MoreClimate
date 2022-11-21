@@ -40,7 +40,7 @@ public class CookingForBlockheads {
 
             if (state.getBlock() == ModBlocks.fridge) {
                 if (event.currentClimate().getTier() <= DCHeatTier.HOT.getTier()) {
-                    event.setNewClimate(DCHeatTier.getHeatEnum(Math.max(-1, event.currentClimate().getTier() - 1)));
+                    event.setNewClimate(DCHeatTier.getHeatEnum(Math.max(0, event.currentClimate().getTier() - 1)));
                     event.setResult(Result.ALLOW);
                 }
             }
