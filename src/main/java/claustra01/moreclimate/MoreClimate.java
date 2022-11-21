@@ -4,6 +4,8 @@ import org.apache.logging.log4j.Logger;
 
 import claustra01.moreclimate.compat.CookingForBlockheads;
 import claustra01.moreclimate.compat.Embers;
+import claustra01.moreclimate.compat.immersiveengineering.IEClimateSupport;
+import claustra01.moreclimate.compat.immersiveengineering.IECropSupport;
 import claustra01.moreclimate.compat.PyroTech;
 import claustra01.moreclimate.main.Potions;
 import net.minecraftforge.common.config.Configuration;
@@ -26,15 +28,17 @@ public class MoreClimate {
     public static final String MOD_ID = "moreclimate";
     public static final String MOD_NAME = "More Climate";
     public static final int MOD_MAJOR = 1;
-    public static final int MOD_MINOR = 3;
-    public static final int MOD_BUILD = 1;
+    public static final int MOD_MINOR = 4;
+    public static final int MOD_BUILD = 0;
     public static final String MOD_REQUIRE = "required-after:dcs_lib@[3.9.3,)";
 
     public static Logger logger;
 
     public static boolean CookingForBlockheadsCompat;
     public static boolean EmbersCompat;
+    public static boolean ImmersiveEngineeringCompat;
     public static boolean PyroTechCompat;
+    public static boolean EnablePackMode;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -45,7 +49,9 @@ public class MoreClimate {
         config.load();
         CookingForBlockheadsCompat = config.get(MOD_ID, "CookingForBlockheadsCompat", true).getBoolean();
         EmbersCompat = config.get(MOD_ID, "EmbersCompat", true).getBoolean();
+        ImmersiveEngineeringCompat = config.get(MOD_ID, "ImmersiveEngineeringCompat", true).getBoolean();
         PyroTechCompat = config.get(MOD_ID, "PyroTechCompat", true).getBoolean();
+        EnablePackMode = config.get(MOD_ID, "EnablePackMode", false).getBoolean();
         config.save();
 
     }
@@ -54,6 +60,10 @@ public class MoreClimate {
     public void init(FMLInitializationEvent event) {
 
         Potions.load();
+
+        if (ImmersiveEngineeringCompat && Loader.isModLoaded("immersiveengineering") && Loader.isModLoaded("dcs_climate")) {
+            IECropSupport.load();
+        }
 
     }
 
@@ -66,6 +76,10 @@ public class MoreClimate {
 
         if (EmbersCompat && Loader.isModLoaded("embers")) {
             Embers.load();
+        }
+
+        if (ImmersiveEngineeringCompat && Loader.isModLoaded("immersiveengineering")) {
+            IEClimateSupport.load();
         }
 
         if (PyroTechCompat && Loader.isModLoaded("pyrotech")) {

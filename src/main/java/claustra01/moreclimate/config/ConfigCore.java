@@ -8,6 +8,8 @@ public class ConfigCore {
 
 	boolean CookingForBlockheadsCompat = true;
 	boolean EmbersCompat = true;
+	boolean ImmersiveEngineeringCompat = true;
 	boolean PyroTechCompat = true;
+	boolean EnablePackMode = false;
 
 }
