@@ -15,7 +15,7 @@ public class IECropSupport {
         BelljarHandler.registerHandler(new CottonPlantHandler());
         // BelljarHandler.registerHandler(new LotusPlantHandler()); // texture missing, many drop items
         BelljarHandler.registerHandler(new HerbPlantHandler());
-        BelljarHandler.registerHandler(new SeaweedPlantHandler());
+        // BelljarHandler.registerHandler(new SeaweedPlantHandler());
         BelljarHandler.registerHandler(new SoyPlantHandler());
         BelljarHandler.registerHandler(new BeanPlantHandler());
         BelljarHandler.registerHandler(new ChiliPlantHandler());
