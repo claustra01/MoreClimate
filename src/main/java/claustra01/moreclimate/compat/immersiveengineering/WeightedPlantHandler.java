@@ -5,6 +5,7 @@ import blusunrize.immersiveengineering.api.tool.BelljarHandler;
 import claustra01.moreclimate.compat.immersiveengineering.WeightedItemStack;
 import defeatedcrow.hac.api.blockstate.DCState;
 import defeatedcrow.hac.core.base.ClimateCropBase;
+import defeatedcrow.hac.core.base.ClimateDoubleCropBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -16,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandler
-{
+public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandler {
 
     protected ComparableItemStack seed;
     protected WeightedItemStack[] drops;
@@ -57,6 +57,9 @@ public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandl
             if(states.get(i) !=null)
                 if(states.get(i).getBlock() instanceof ClimateCropBase) {
                     ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE4, Math.min(3, Math.round(3*growth)));
+                }
+                else if(states.get(i).getBlock() instanceof ClimateDoubleCropBase) {
+                    ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, Math.min(7, Math.round(7*growth)));
                 }
         return ret;
 
