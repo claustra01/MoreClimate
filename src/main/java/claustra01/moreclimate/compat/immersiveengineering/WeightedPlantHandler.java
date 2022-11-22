@@ -8,6 +8,7 @@ import defeatedcrow.hac.core.base.ClimateCropBase;
 import defeatedcrow.hac.core.base.ClimateDoubleCropBase;
 import defeatedcrow.hac.food.block.crop.BlockGrape;
 import defeatedcrow.hac.food.block.crop.BlockLotusN;
+import defeatedcrow.hac.food.block.crop.BlockSeaweed;
 import defeatedcrow.hac.food.block.crop.BlockWisteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -54,6 +55,10 @@ public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandl
         List<IBlockState> states = new ArrayList<IBlockState>();
         states.add(crop.getDefaultState());
 
+        if (crop instanceof ClimateDoubleCropBase && Math.round(7 * growth) >= 4) {
+            states.add(crop.getDefaultState());
+        }
+
         IBlockState[] ret = new IBlockState[states.size()];
         for (int i = 0; i < states.size(); i++)
             if (states.get(i) != null)
@@ -63,7 +68,14 @@ public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandl
                 }
 
                 else if (states.get(i).getBlock() instanceof ClimateDoubleCropBase) {
-                    ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, Math.min(7, Math.round(7 * growth)));
+                    int growLevel = Math.min(7, Math.round(7 * growth));
+                    if (Math.round(7 * growth) >= 4) {
+                        ret[0] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, growLevel).withProperty(DCState.DOUBLE, true);
+                        ret[1] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, growLevel);
+                    }
+                    else {
+                        ret[0] = (states.get(i).getBlock()).getDefaultState().withProperty(DCState.STAGE8, growLevel);
+                    }
                 }
 
         return ret;
