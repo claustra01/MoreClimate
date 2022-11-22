@@ -1,7 +1,7 @@
 package claustra01.moreclimate.compat.immersiveengineering;
 
 import blusunrize.immersiveengineering.api.tool.BelljarHandler;
-import claustra01.moreclimate.compat.immersiveengineering.crops.*;
+import claustra01.moreclimate.compat.immersiveengineering.crop.*;
 
 public class IECropSupport {
 
