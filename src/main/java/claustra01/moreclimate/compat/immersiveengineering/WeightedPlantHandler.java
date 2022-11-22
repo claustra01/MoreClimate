@@ -6,7 +6,6 @@ import claustra01.moreclimate.compat.immersiveengineering.WeightedItemStack;
 import defeatedcrow.hac.api.blockstate.DCState;
 import defeatedcrow.hac.core.base.ClimateCropBase;
 import defeatedcrow.hac.core.base.ClimateDoubleCropBase;
-import defeatedcrow.hac.food.block.crop.BlockSeaweed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
