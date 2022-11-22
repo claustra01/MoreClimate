@@ -6,10 +6,7 @@ import claustra01.moreclimate.compat.immersiveengineering.WeightedItemStack;
 import defeatedcrow.hac.api.blockstate.DCState;
 import defeatedcrow.hac.core.base.ClimateCropBase;
 import defeatedcrow.hac.core.base.ClimateDoubleCropBase;
-import defeatedcrow.hac.food.block.crop.BlockGrape;
-import defeatedcrow.hac.food.block.crop.BlockLotusN;
 import defeatedcrow.hac.food.block.crop.BlockSeaweed;
-import defeatedcrow.hac.food.block.crop.BlockWisteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -47,6 +44,15 @@ public abstract class WeightedPlantHandler implements BelljarHandler.IPlantHandl
     @Override
     public boolean isValid(ItemStack seed) {
         return new ComparableItemStack(seed, false, false).equals(this.seed);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float getRenderSize(ItemStack seed, ItemStack soil, float growth, TileEntity tile) {
+        if (crop instanceof ClimateDoubleCropBase && Math.round(7 * growth) >= 4) {
+            return .75f;
+        }
+        return .875f;
     }
 
     @Override
