@@ -29,7 +29,7 @@ public class MoreClimate {
     public static final String MOD_NAME = "More Climate";
     public static final int MOD_MAJOR = 1;
     public static final int MOD_MINOR = 4;
-    public static final int MOD_BUILD = 0;
+    public static final int MOD_BUILD = 1;
     public static final String MOD_REQUIRE = "required-after:dcs_lib@[3.9.3,)";
 
     public static Logger logger;
@@ -63,6 +63,10 @@ public class MoreClimate {
 
         if (ImmersiveEngineeringCompat && Loader.isModLoaded("immersiveengineering") && Loader.isModLoaded("dcs_climate")) {
             IECropSupport.load();
+        }
+
+        if (EnablePackMode) {
+            // Blooms.load();
         }
 
     }
