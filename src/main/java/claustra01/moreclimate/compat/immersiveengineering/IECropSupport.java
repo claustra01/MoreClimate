@@ -13,8 +13,8 @@ public class IECropSupport {
         BelljarHandler.registerHandler(new TomatoPlantHandler());
         BelljarHandler.registerHandler(new CoffeePlantHandler());
         BelljarHandler.registerHandler(new CottonPlantHandler());
-        // BelljarHandler.registerHandler(new LotusPlantHandler());
-        // BelljarHandler.registerHandler(new LotusPlantHandler2());
+        BelljarHandler.registerHandler(new LotusPlantHandler());
+        BelljarHandler.registerHandler(new LotusPlantHandler2());
         BelljarHandler.registerHandler(new HerbPlantHandler());
         BelljarHandler.registerHandler(new SeaweedPlantHandler());
         BelljarHandler.registerHandler(new SoyPlantHandler());

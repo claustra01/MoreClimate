@@ -1,8 +1,10 @@
 package claustra01.moreclimate.compat.immersiveengineering;
 
+import biomesoplenty.common.block.BlockBOPLilypad;
 import defeatedcrow.hac.api.blockstate.DCState;
 import defeatedcrow.hac.food.block.crop.BlockSeaweed;
 import net.minecraft.block.BlockLilyPad;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,6 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static biomesoplenty.common.block.BlockBOPLilypad.LilypadType;
+import static biomesoplenty.common.block.BlockBOPLilypad.VARIANT;
 
 public abstract class WeightedUnderWaterPlantHandler extends WeightedPlantHandler {
 
@@ -37,9 +42,21 @@ public abstract class WeightedUnderWaterPlantHandler extends WeightedPlantHandle
         for (int i = 0; i < states.size(); i++)
             if (states.get(i) != null)
 
-                if (states.get(i).getBlock() instanceof BlockLilyPad) {
+                if (states.get(i).getBlock() instanceof BlockBOPLilypad) {
+                    if (Math.round(2 * growth) >= 2) {
+                        ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, LilypadType.MEDIUM);
+                    }
+                    else if (Math.round(2 * growth) >= 1) {
+                        ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, LilypadType.SMALL);
+                    }
+                    else {
+                        ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, LilypadType.TINY);
+                    }
+                }
+                else if (states.get(i).getBlock() instanceof BlockLilyPad) {
                     ret[i] = (states.get(i).getBlock()).getDefaultState();
                 }
+
 
                 else if (states.get(i).getBlock() instanceof BlockSeaweed) {
                     if (Math.round(3 * growth) >= 3) {
