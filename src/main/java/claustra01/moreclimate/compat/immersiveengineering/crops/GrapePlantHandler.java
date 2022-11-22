@@ -2,13 +2,13 @@ package claustra01.moreclimate.compat.immersiveengineering.crops;
 
 import blusunrize.immersiveengineering.api.ComparableItemStack;
 import claustra01.moreclimate.compat.immersiveengineering.WeightedItemStack;
-import claustra01.moreclimate.compat.immersiveengineering.WeightedPlantHandler;
+import claustra01.moreclimate.compat.immersiveengineering.WeightedVinePlantHandler;
 import defeatedcrow.hac.food.FoodInit;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-public class GrapePlantHandler extends WeightedPlantHandler {
+public class GrapePlantHandler extends WeightedVinePlantHandler {
 
     public static float seedWeight = 0.25f;
     public static float cropWeight = 1f;
