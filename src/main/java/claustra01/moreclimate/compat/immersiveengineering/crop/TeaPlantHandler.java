@@ -45,7 +45,7 @@ public class TeaPlantHandler extends WeightedPlantHandler {
     @Override
     @SideOnly(Side.CLIENT)
     public float getRenderSize(ItemStack seed, ItemStack soil, float growth, TileEntity tile) {
-        return .6f;
+        return .7f;
     }
 
     @Override
