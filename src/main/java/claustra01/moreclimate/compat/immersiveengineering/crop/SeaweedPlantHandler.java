@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static biomesoplenty.common.block.BlockBOPLilypad.VARIANT;
-
 public class SeaweedPlantHandler extends WeightedPlantHandler {
 
     public static float seedWeight = 0.25f;
