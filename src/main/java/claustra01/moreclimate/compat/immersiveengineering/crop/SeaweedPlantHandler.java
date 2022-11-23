@@ -8,11 +8,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+import java.util.Random;
+
 public class SeaweedPlantHandler extends WeightedUnderWaterPlantHandler {
 
     public static float seedWeight = 0.25f;
     public static float cropWeight = 1f;
-    public static int numDrops = 1;
+    public static int minDrops = 1;
+    public static int maxDrops = 2;
+    public static int numDrops = new Random().nextInt(maxDrops - minDrops) + minDrops;
     public static ItemStack itemSeeds = new ItemStack(FoodInit.seeds, 1, 8);
     public static ItemStack itemDrops = new ItemStack(FoodInit.seeds, numDrops, 8);
     public static ItemStack blockDirt = new ItemStack(Blocks.DIRT);

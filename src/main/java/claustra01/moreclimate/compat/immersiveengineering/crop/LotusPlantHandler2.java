@@ -10,11 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.Loader;
 
+import java.util.Random;
+
 public class LotusPlantHandler2 extends WeightedUnderWaterPlantHandler {
 
     public static float seedWeight = 0f;
     public static float cropWeight = 1f;
-    public static int numDrops = 1;
+    public static int minDrops = 1;
+    public static int maxDrops = 2;
+    public static int numDrops = new Random().nextInt(maxDrops - minDrops) + minDrops;
     public static ItemStack itemSeeds = new ItemStack(FoodInit.petals, 1, 0);
     public static ItemStack itemDrops = new ItemStack(FoodInit.crops, numDrops, 10);
     public static ItemStack blockDirt = new ItemStack(Blocks.DIRT);
