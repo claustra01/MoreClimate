@@ -29,11 +29,12 @@ public class MoreClimate {
     public static final String MOD_NAME = "More Climate";
     public static final int MOD_MAJOR = 1;
     public static final int MOD_MINOR = 4;
-    public static final int MOD_BUILD = 1;
+    public static final int MOD_BUILD = 2;
     public static final String MOD_REQUIRE = "required-after:dcs_lib@[3.9.3,)";
 
     public static Logger logger;
 
+    public static boolean BonsaiTreesCompat;
     public static boolean CookingForBlockheadsCompat;
     public static boolean EmbersCompat;
     public static boolean ImmersiveEngineeringCompat;
@@ -47,10 +48,18 @@ public class MoreClimate {
 
         Configuration config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
-        CookingForBlockheadsCompat = config.get(MOD_ID, "CookingForBlockheadsCompat", true).getBoolean();
-        EmbersCompat = config.get(MOD_ID, "EmbersCompat", true).getBoolean();
-        ImmersiveEngineeringCompat = config.get(MOD_ID, "ImmersiveEngineeringCompat", true).getBoolean();
-        PyroTechCompat = config.get(MOD_ID, "PyroTechCompat", true).getBoolean();
+
+        BonsaiTreesCompat = config.get(MOD_ID, "BonsaiTreesCompat", true).getBoolean()
+                && Loader.isModLoaded("bonsaitrees");
+        CookingForBlockheadsCompat = config.get(MOD_ID, "CookingForBlockheadsCompat", true).getBoolean()
+                && Loader.isModLoaded("cookingforblockheads");
+        EmbersCompat = config.get(MOD_ID, "EmbersCompat", true).getBoolean()
+                && Loader.isModLoaded("embers");
+        ImmersiveEngineeringCompat = config.get(MOD_ID, "ImmersiveEngineeringCompat", true).getBoolean()
+                && Loader.isModLoaded("immersiveengineering");
+        PyroTechCompat = config.get(MOD_ID, "PyroTechCompat", true).getBoolean()
+                && Loader.isModLoaded("pyrotech");
+
         EnablePackMode = config.get(MOD_ID, "EnablePackMode", false).getBoolean();
         config.save();
 
@@ -61,7 +70,7 @@ public class MoreClimate {
 
         Potions.load();
 
-        if (ImmersiveEngineeringCompat && Loader.isModLoaded("immersiveengineering") && Loader.isModLoaded("dcs_climate")) {
+        if (ImmersiveEngineeringCompat && Loader.isModLoaded("dcs_climate")) {
             IECropSupport.load();
         }
 
@@ -74,19 +83,19 @@ public class MoreClimate {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
-        if (CookingForBlockheadsCompat && Loader.isModLoaded("cookingforblockheads")) {
+        if (CookingForBlockheadsCompat) {
             CookingForBlockheads.load();
         }
 
-        if (EmbersCompat && Loader.isModLoaded("embers")) {
+        if (EmbersCompat) {
             Embers.load();
         }
 
-        if (ImmersiveEngineeringCompat && Loader.isModLoaded("immersiveengineering")) {
+        if (ImmersiveEngineeringCompat) {
             IEClimateSupport.load();
         }
 
-        if (PyroTechCompat && Loader.isModLoaded("pyrotech")) {
+        if (PyroTechCompat) {
             PyroTech.load();
         }
 
