@@ -8,6 +8,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -42,7 +43,7 @@ public abstract class WeightedUnderWaterPlantHandler extends WeightedPlantHandle
         for (int i = 0; i < states.size(); i++)
             if (states.get(i) != null)
 
-                if (states.get(i).getBlock() instanceof BlockBOPLilypad) {
+                if (Loader.isModLoaded("biomesoplenty") && states.get(i).getBlock() instanceof BlockBOPLilypad) {
                     if (Math.round(2 * growth) >= 2) {
                         ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, LilypadType.MEDIUM);
                     }
