@@ -1,18 +1,27 @@
 package claustra01.moreclimate.compat.immersiveengineering.crop;
 
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.common.block.BlockBOPLilypad;
 import blusunrize.immersiveengineering.api.ComparableItemStack;
 import claustra01.moreclimate.compat.immersiveengineering.WeightedItemStack;
-import claustra01.moreclimate.compat.immersiveengineering.WeightedUnderWaterPlantHandler;
+import claustra01.moreclimate.compat.immersiveengineering.WeightedPlantHandler;
 import defeatedcrow.hac.food.FoodInit;
+import net.minecraft.block.BlockLilyPad;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class LotusPlantHandler2 extends WeightedUnderWaterPlantHandler {
+import static biomesoplenty.common.block.BlockBOPLilypad.VARIANT;
+
+public class LotusPlantHandler2 extends WeightedPlantHandler {
 
     public static float seedWeight = 0f;
     public static float cropWeight = 1f;
@@ -36,6 +45,35 @@ public class LotusPlantHandler2 extends WeightedUnderWaterPlantHandler {
                 new WeightedItemStack(itemDrops, cropWeight)
         };
         return WeightedItemStack.getRandomDrops(rand, stacks);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IBlockState[] getRenderedPlant(ItemStack seed, ItemStack soil, float growth, TileEntity tile) {
+        List<IBlockState> states = new ArrayList<IBlockState>();
+        states.add(crop.getDefaultState());
+
+        IBlockState[] ret = new IBlockState[states.size()];
+        for (int i = 0; i < states.size(); i++)
+            if (states.get(i) != null)
+
+                if (Loader.isModLoaded("biomesoplenty") && states.get(i).getBlock() instanceof BlockBOPLilypad) {
+                    if (Math.round(2 * growth) >= 2) {
+                        ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, BlockBOPLilypad.LilypadType.MEDIUM);
+                    }
+                    else if (Math.round(2 * growth) >= 1) {
+                        ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, BlockBOPLilypad.LilypadType.SMALL);
+                    }
+                    else {
+                        ret[i] = (states.get(i).getBlock()).getDefaultState().withProperty(VARIANT, BlockBOPLilypad.LilypadType.TINY);
+                    }
+                }
+                else if (states.get(i).getBlock() instanceof BlockLilyPad) {
+                    ret[i] = (states.get(i).getBlock()).getDefaultState();
+                }
+
+        return ret;
+
     }
 
 }
