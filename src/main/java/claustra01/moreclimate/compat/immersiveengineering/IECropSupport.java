@@ -26,6 +26,8 @@ public class IECropSupport {
         BelljarHandler.registerHandler(new GingerPlantHandler());
         BelljarHandler.registerHandler(new GrapePlantHandler());
 
+        BelljarHandler.registerHandler(new TeaPlantHandler());
+
     }
 
 }
