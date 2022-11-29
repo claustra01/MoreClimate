@@ -4,7 +4,7 @@ plugins {
 
 
 group = 'claustra01'
-version = '1.4.2'
+version = '1.4.3'
 
 java {
     archivesBaseName = 'moreclimate-mc1.12.2'
