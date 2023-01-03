@@ -1,6 +1,0 @@
-{
-    "parent": "moreclimate:block/bloom_base",
-    "textures": {
-      "all": "moreclimate:blocks/bloom_iron"
-    }
-}
