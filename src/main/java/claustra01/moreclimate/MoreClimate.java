@@ -29,7 +29,7 @@ public class MoreClimate {
     public static final String MOD_NAME = "More Climate";
     public static final int MOD_MAJOR = 1;
     public static final int MOD_MINOR = 4;
-    public static final int MOD_BUILD = 3;
+    public static final int MOD_BUILD = 4;
     public static final String MOD_REQUIRE = "required-after:dcs_lib@[3.9.3,)";
 
     public static Logger logger;
