@@ -39,7 +39,6 @@ public class MoreClimate {
     public static boolean EmbersCompat;
     public static boolean ImmersiveEngineeringCompat;
     public static boolean PyroTechCompat;
-    public static boolean EnablePackMode;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -60,7 +59,6 @@ public class MoreClimate {
         PyroTechCompat = config.get(MOD_ID, "PyroTechCompat", true).getBoolean()
                 && Loader.isModLoaded("pyrotech");
 
-        EnablePackMode = config.get(MOD_ID, "EnablePackMode", false).getBoolean();
         config.save();
 
     }
@@ -72,10 +70,6 @@ public class MoreClimate {
 
         if (ImmersiveEngineeringCompat && Loader.isModLoaded("dcs_climate")) {
             IECropSupport.load();
-        }
-
-        if (EnablePackMode) {
-            // Blooms.load();
         }
 
     }

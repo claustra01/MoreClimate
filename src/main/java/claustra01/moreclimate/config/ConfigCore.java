@@ -12,6 +12,4 @@ public class ConfigCore {
 	boolean ImmersiveEngineeringCompat = true;
 	boolean PyroTechCompat = true;
 
-	boolean EnablePackMode = false;
-
 }
